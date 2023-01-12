@@ -17,6 +17,7 @@ On average we have **7.52 orders**
 Query:
 
 <code>
+
 WITH users_tbl AS ( <br>
     SELECT  <br>
         trunc(created_at_utc, 'hour'), <br>
