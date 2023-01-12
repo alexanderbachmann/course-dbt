@@ -5,10 +5,11 @@ We have **130  unique users**.
 
 Query:
 
-`
+<code>
 SELECT 
     COUNT(DISTINCT USER_GUID)
-FROM dev_db.dbt_janio.stg_postgres__users;`
+FROM dev_db.dbt_janio.stg_postgres__users;
+</code>
 
 **Question 2: On average how many orders do we receive per hour?**
 
