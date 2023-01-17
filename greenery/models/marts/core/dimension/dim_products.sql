@@ -11,9 +11,6 @@ select
     p.product_guid,
     p.product_name,
     p.product_price,
-    p.inventory,
-    oi.order_guid,
-    oi.quantity,
     CASE 
         WHEN o.promo_description IS NULL THEN 'no promo'
         ELSE o.promo_description

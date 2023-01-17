@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fct_product
+    description: "Model that displays all products purchases by event type in our website"
+    columns:
+      - name: product_guid
+        description: "The primary key for this table"
+      - name: product_name
+        description: "name of the product"
+      - name: product_price
+        description: "Price of the product"
+      - name: inventory
+        description: "Current inventory of a product"
+      - name: event_type
+        description: "Event type of the session in our website"
+      - name: order_guid
+        description: "Unique identifier of the order"
+      - name: quantity
+        description: "Total amount purchased"
+
+    

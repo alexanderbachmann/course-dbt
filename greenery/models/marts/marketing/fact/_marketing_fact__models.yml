@@ -1,11 +1,33 @@
 version: 2
 
 models:
-  - name: user_order_facts
+  - name: fct_user_order
     description: "More specifics about the product sold to the user"
     columns:
       - name: user_guid
         description: "The primary key for this table"
         tests:
           - not_null
+      - name: first_name
+        description: "First name of the user"
+      - name: last_name
+        description: "Last name of the user"
+      - name: email
+        description: "Email of the user"
+      - name: promo_description
+        description: "Description of the promo"
+      - name: order_cost
+        description: "Cost of the order"
+      - name: shipping_cost
+        description: "Total shipping cost"
+      - name: order_total
+        description: "Total cost of the order"
+      - name: discount
+        description: "Whether there has been a discount for the product"
+      - name: discounted_order_total
+        description: "Total discounted order"
+      
+
+
+      
 

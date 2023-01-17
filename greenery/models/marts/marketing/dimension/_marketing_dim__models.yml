@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: dim_active_promos
+    description: "Only active promos is included"
+    columns:
+      - name: promo_description
+        description: "The primary key for this table"
+
+      - name: discount
+        description: "The total amount of discount"
+
+

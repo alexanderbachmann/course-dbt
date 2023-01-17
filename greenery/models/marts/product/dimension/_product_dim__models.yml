@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: dim_users
+    description: "Model that displays all information regarding a specific user"
+    columns:
+      - name: first_name
+        description: "first name of the customer"
+        tests:
+          - not_null
+      - name: last_name
+        description: "Last name of the user"
+      - name: email 
+        description: "Email of the user"
+      - name: created_date_utc 
+        description: "Created utc time"
+      - name: country 
+        description: "Country of the user"
+      - name: market_status 
+        description: "Whether it is international or local market"
+      - name: state 
+        description: "State from the user"
+      - name: zipcode 
+        description: "Zipcode of the user"

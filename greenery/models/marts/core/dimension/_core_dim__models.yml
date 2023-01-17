@@ -9,12 +9,8 @@ models:
         tests:
           - not_null
       - name: product_name
-        description: "name of the product"
-
-  - name: dim_users
-    description: "Model that displays all information regarding a specific user"
-    columns:
-      - name: user_guid
-        description: "The primary key for this table"
-        tests:
-          - not_null
+        description: "Name of the product"
+      - name: product_price
+        description: "Price of the product"
+      - name: promo_description
+        description: "Whether the product had a promo description"

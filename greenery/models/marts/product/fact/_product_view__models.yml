@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: fact_page_views
+  - name: fct_page_views
     description: "Total session views tablle by user"
     columns:
       - name: user_guid
@@ -9,3 +9,8 @@ models:
         tests:
           - not_null
           - unique
+
+      - name: page_views
+        description: "Total number of page views"
+        tests: 
+          - positive_values
