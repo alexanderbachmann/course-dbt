@@ -29,5 +29,5 @@ Using the not_null test will warn me if there is any case in which a unique iden
 
 **Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?**
 - I wouldn't say bad data however, there were some test in which I ran the unique test which basically avoids us having any sort of duplication.
-However, I assume that during the staging model we do have duplicate unique identifies such as product_guid since one person could have bought the same product more than once.
+However, I assume that during the staging model we do have duplicate unique identifiers such as product_guid since one person could have bought the same product more than once.
 In case this model would have require us to have a unique observation, I could have modified the unique identifier to a different one and avoid the test to fail.
