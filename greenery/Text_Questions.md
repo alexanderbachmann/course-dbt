@@ -31,3 +31,31 @@ Using the not_null test will warn me if there is any case in which a unique iden
 - I wouldn't say bad data however, there were some test in which I ran the unique test which basically avoids us having any sort of duplication.
 However, I assume that during the staging model we do have duplicate unique identifiers such as product_guid since one person could have bought the same product more than once.
 In case this model would have require us to have a unique observation, I could have modified the unique identifier to a different one and avoid the test to fail.
+
+
+## Part 3: dbt Snapshots
+
+Let's update our orders snapshot that we created last week to see how our data is changing:
+
+Run the orders snapshot model using dbt snapshot and query it in snowflake to see how the data has changed since last week. 
+
+**Which orders changed from week 1 to week 2?**
+- The orders that were updated from week 1 to week 2 are the following:
+1) 265f9aae-561a-4232-a78a-7052466e46b7
+2) e42ba9a9-986a-4f00-8dd2-5cf8462c74ea
+3) b4eec587-6bca-4b2a-b3d3-ef2db72c4a4f
+
+The query I used to find this out is the following:
+(which basically sorts all the dbt_value_to to the non nulls first or updated rows from last time)
+
+<code>
+
+select <br> 
+    order_id, <br>
+    dbt_valid_to <br>
+from <br>
+    dev_db.dbt_janio.orders_snapshot <br>
+order by <br>
+    dbt_valid_to;
+
+</code>
