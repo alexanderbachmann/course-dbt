@@ -49,7 +49,6 @@ The query I used to find this out is the following:
 (which basically sorts all the dbt_value_to to the non nulls first or updated rows from last time)
 
 <code>
-
 select <br> 
     order_id, <br>
     dbt_valid_to <br>
@@ -57,5 +56,4 @@ from <br>
     dev_db.dbt_janio.orders_snapshot <br>
 order by <br>
     dbt_valid_to;
-
 </code>
