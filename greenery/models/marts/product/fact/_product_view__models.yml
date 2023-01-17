@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: fact_page_views
+    description: "Total session views tablle by user"
+    columns:
+      - name: user_guid
+        description: "Users inour website"
+        tests:
+          - not_null
+          - unique

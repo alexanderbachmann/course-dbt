@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: user_order_facts
+    description: "More specifics about the product sold to the user"
+    columns:
+      - name: user_guid
+        description: "The primary key for this table"
+        tests:
+          - not_null
+

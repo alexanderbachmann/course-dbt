@@ -5,13 +5,33 @@ models:
     description: Addresses  with their respective zipcode, country and state.
   - name: stg_postgres__events
     description: Tracked events in the greenery website.
+    columns:
+      - name: session_guid
+        description: "The primary key for the sessions table"
+        tests:
+          - not_null
   - name: stg_postgres__order_items
     description: Tracked orders for each product and their respective quantity.
   - name: stg_postgres__orders
     description: Tracked orders by user_id, promo, address_id and utc created time.
   - name: stg_postgres__products
     description: All relevant information related to products such as name, price and inventory.
+    columns:
+      - name: product_guid
+        description: "The primary key for the product table"
+        tests:
+          - not_null
   - name: stg_postgres__promos
     description: Table with all the current live promos.
+    columns:
+      - name: discount
+        description: "Whether a product has a discount applied"
+        tests:
+          - positive_values
   - name: stg_postgres__users
     description: Specific personal information about our users.
+    columns:
+      - name: user_guid
+        description: "The primary key for the user table"
+        tests:
+          - not_null

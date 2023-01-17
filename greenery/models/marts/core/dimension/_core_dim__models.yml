@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: "Model that displays all information regarding a specific product"
+    columns:
+      - name: product_guid
+        description: "The primary key for this table"
+        tests:
+          - not_null
+      - name: product_name
+        description: "name of the product"
+
+  - name: dim_users
+    description: "Model that displays all information regarding a specific user"
+    columns:
+      - name: user_guid
+        description: "The primary key for this table"
+        tests:
+          - not_null
