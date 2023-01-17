@@ -18,3 +18,16 @@
 
  **Facts Models:** 
 I added two facts models one belonging to the marketing subfolder and another belonging to the product subfolder. In the marketing subfolder we have the user_order_facts model which allows us to find out what was the discounted price of the product. We do have  the order total of the transaction however, I assumed that the discounted price was not taking into consideration. So in this model I included the discount to the order total column (transformation). In the product subfolder I added a model that just counts all the unique session_guids by users in order to see which user had the most page views. 
+
+
+## Part 2: dbt Tests
+We added some more models and transformed some data! Now we need to make sure they’re accurately reflecting the data. Add dbt tests into your dbt project on your existing models from Week 1, and new models from the section above
+
+**What assumptions are you making about each model? (i.e. why are you adding each test?)**
+- I am adding several types of tests. In the case of using the not_null test I want to make sure that all product, orders and/or sessions have a unique identified.
+Using the not_null test will warn me if there is any case in which a unique identifier was not assigned.
+
+**Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?**
+- I wouldn't say bad data however, there were some test in which I ran the unique test which basically avoids us having any sort of duplication.
+However, I assume that during the staging model we do have duplicate unique identifies such as product_guid since one person could have bought the same product more than once.
+In case this model would have require us to have a unique observation, I could have modified the unique identifier to a different one and avoid the test to fail.
