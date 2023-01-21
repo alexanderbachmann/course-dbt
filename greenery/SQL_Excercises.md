@@ -1,37 +1,59 @@
 ### Week 1: SQL Excercises
 **Question 1: What is our repeat rate?**
 
-**Repeat Rate = Users who purchased 2 or more items / total users who purchased**
-
-
-Our **repeat rate is 0.798**.
-
-Query:
+**What is our overall conversion rate?**
 
 <code>
-WITH orders_users_tbl AS ( <br>
-SELECT  <br>
-    USER_GUID, <br>
-    COUNT(ORDER_GUID) AS total_orders <br>
-FROM dev_db.dbt_janio.stg_postgres__orders <br>
-GROUP BY 1 <br>
-),<br>
-prep_tbl AS (<br>
-    SELECT <br>
-    total_orders, <br>
-    COUNT(user_guid) as cnt_users <br>
-FROM orders_users_tbl <br>
-GROUP BY 1 <br>
-ORDER BY 1 <br>
- ),<br>
- aggregation_tbl AS (<br>
-SELECT <br>
-    SUM(CASE WHEN total_orders > 1 THEN cnt_users ELSE 0 END) AS repeated_users,<br>
-    SUM(cnt_users) AS total_users <br>
- FROM prep_tbl <br>
- ) <br>
- SELECT <br>
-   round(repeated_users / total_users, 3)  AS repeated_rate <br>
-FROM aggregation_tbl; <br>
+
+with dst_events_orders_tbl as ( <br>
+select <br>
+    COUNT(distinct session_guid) as unique_session, <br>
+    COUNT(distinct order_guid) as unique_order <br>
+from dev_db.dbt_janio.stg_postgres__events <br>
+) <br>
+select <br>
+    unique_order / unique_session as conversion_rate <br>
+from dst_events_orders_tbl <br>
+
 </code>
 
+**Question 2: What is our conversion rate by product** <br>
+Conversion Rate by Product: # of unique sessions with a purchase event of that product / total number of unique sessions that viewed that product
+
+
+<code>
+-- Unique sessions <br>
+  with unique_session as ( <br>
+        select <br>
+          p.product_guid <br>
+        , p.product_name <br>
+        ,   COUNT(distinct e.session_guid) AS total_unique_sessions <br>
+        from dev_db.dbt_janio.stg_postgres__events e <br>
+        left join dev_db.dbt_janio.stg_postgres__products p  <br>
+       on e.product_guid = p.product_guid <br>
+        WHERE p.product_guid IS NOT NULL <br>
+        group by 1, 2 <br>
+    ) <br>
+    -- Unique Orders Table <br>
+     , orders_tbl as ( <br>
+        select  <br>
+            o.product_guid <br>
+        , p.product_name <br>
+        , count(o.order_guid)   as total_orders <br>
+        from dev_db.dbt_janio.stg_postgres__order_items o <br>
+        left join dev_db.dbt_janio.stg_postgres__products p <br>
+        on o.product_guid = p.product_guid  <br>
+        group by 1,2 <br>
+    ) <br>
+    select <br>
+        us.product_guid <br>
+        , us.product_name <br>
+        , us.total_unique_sessions <br>
+        , ot.total_orders <br>
+        , ROUND(ot.total_orders / us.total_unique_sessions, 2) AS conversion_rate <br>
+    from unique_session us <br>
+    left join orders_tbl ot <br>
+    on us.product_guid = ot.product_guid
+
+
+</code>
