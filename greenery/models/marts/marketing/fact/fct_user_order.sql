@@ -40,6 +40,7 @@ discounted_products_tbl AS (
             when discount = 0 then order_total
             else order_total - (order_total * discount)
         end as discounted_order_total
+        , {{ applying_discounts('discount', 'order_total') }} as final_order_total
     FROM user_product_tbl
 )
 SELECT * FROM discounted_products_tbl

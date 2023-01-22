@@ -11,6 +11,6 @@ with user_quantity_tbl as (
     from {{ ref('stg_postgres__orders') }} o
     left join {{ ref('stg_postgres__order_items')}} i
     on o.order_guid = i.order_guid
-    group by 1
+    {{ dbt_utils.group_by(1) }}
 )
 select * from user_quantity_tbl

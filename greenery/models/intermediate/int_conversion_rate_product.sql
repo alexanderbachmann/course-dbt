@@ -14,7 +14,7 @@
         left join {{ ref('stg_postgres__products') }} p 
        on e.product_guid = p.product_guid
         WHERE p.product_guid IS NOT NULL
-        group by 1, 2
+        {{ dbt_utils.group_by(2) }}
     )
     , orders_tbl as (
         select 
@@ -24,7 +24,7 @@
         from {{ ref('stg_postgres__order_items') }} o
         left join {{ ref('stg_postgres__products') }} p
         on o.product_guid = p.product_guid 
-        group by 1,2 
+        {{ dbt_utils.group_by(2) }}
     )
     select
         us.product_guid
