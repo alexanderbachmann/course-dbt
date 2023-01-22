@@ -1,0 +1,8 @@
+version: 2
+
+macros:
+  - name: unique_event_types
+    description: "Call all unique event types"
+
+  - name: positive_values
+    description: "Check for positive values used for testing"
