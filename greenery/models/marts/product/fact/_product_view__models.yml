@@ -14,3 +14,6 @@ models:
         description: "Total number of page views"
         tests: 
           - positive_values
+
+  - name: fct_conversion_funnel
+    description: "Conversion funnel metric"
