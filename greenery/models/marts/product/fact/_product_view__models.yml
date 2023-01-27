@@ -15,5 +15,5 @@ models:
         tests: 
           - positive_values
 
-  - name: fct_conversion_funnel
-    description: "Conversion funnel metric"
+  - name: fct_product_funnel
+    description: "Product funnel metric"
