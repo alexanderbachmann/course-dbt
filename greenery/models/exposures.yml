@@ -1,0 +1,15 @@
+version: 2
+
+exposures:  
+  - name: Product Funnel Dashboard
+    description: >
+      Models that are critical to our product funnel dashboard
+    type: dashboard
+    maturity: high
+    owner:
+      name: Janio Martinez Bachmann
+      email: janiobachmann@gmail.com
+    depends_on:
+      - ref('fct_product_funnel')
+      - ref('int_session_events_agg')
+      - ref('stg_postres__events')
